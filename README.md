@@ -52,5 +52,7 @@ const myBoardCards = trelloClient.getCache("BoardCards") as TrelloCard[];
 - View your power-up and head to the "API Key" section
 - Copy the API key and save it to your environment variables file
 - To get the token, to the right of the API key is a paragraph. At the end of the paragraph is a hyperlink "Token"
+<img width="853" height="473" alt="image" src="https://github.com/user-attachments/assets/0e046e3d-d797-44a1-925a-e73c2ed4f44a" />
+
 - Click on "Token," review the information and scroll to the bottom, and then click "Allow"
 - Copy the token (usually starts with "ATTA") and save it to your environment variables file
