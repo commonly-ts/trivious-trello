@@ -44,3 +44,13 @@ trelloClient.createCache("BoardCards", {
 // of objects in a situation where an API request takes too long
 const myBoardCards = trelloClient.getCache("BoardCards") as TrelloCard[];
 ```
+
+### Creating a Trello API key & token
+
+- Go to [Power-Up Admin](https://trello.com/power-ups/admin) page and click "New" next to "Your Apps"
+- Fill out the form and then click "Create"
+- View your power-up and head to the "API Key" section
+- Copy the API key and save it to your environment variables file
+- To get the token, to the right of the API key is a paragraph. At the end of the paragraph is a hyperlink "Token"
+- Click on "Token," review the information and scroll to the bottom, and then click "Allow"
+- Copy the token (usually starts with "ATTA") and save it to your environment variables file
