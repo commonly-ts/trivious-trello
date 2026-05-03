@@ -1,0 +1,64 @@
+{
+	"name": "@trivious/trello",
+	"version": "1.0.0",
+	"type": "module",
+	"description": "Trello API wrapper module for Trivious framework",
+	"license": "Apache-2.0",
+	"publishConfig": {
+		"access": "public"
+	},
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js",
+			"require": "./dist/index.js",
+			"default": "./dist/index.js"
+		}
+	},
+	"files": [
+		"dist",
+		"package.json"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/commonly-ts/trivious-trello.git"
+	},
+	"bugs": {
+		"url": "https://github.com/commonly-ts/trivious-trello/issues"
+	},
+	"scripts": {
+		"build": "tsup && tsc-alias",
+		"lint": "eslint --fix src",
+		"format": "prettier --write src",
+		"typecheck": "tsc --noEmit",
+		"dev": "tsup --watch",
+		"release": "semantic-release",
+		"prepare": "npm run build"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.39.1",
+		"@semantic-release/changelog": "^6.0.3",
+		"@semantic-release/git": "^10.0.1",
+		"@semantic-release/github": "^12.0.2",
+		"@semantic-release/npm": "^13.1.2",
+		"@types/node": "^24.10.1",
+		"@typescript-eslint/eslint-plugin": "^8.57.0",
+		"@typescript-eslint/parser": "^8.57.0",
+		"dotenv": "^17.2.3",
+		"eslint": "^9.39.1",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-import": "^2.32.0",
+		"eslint-plugin-prettier": "^5.5.5",
+		"prettier": "^3.6.2",
+		"semantic-release": "^25.0.2",
+		"tsc-alias": "^1.8.16",
+		"tsup": "^8.5.1",
+		"typescript": "^5.9.3",
+		"typescript-eslint": "^8.57.0"
+	},
+	"dependencies": {
+		"bottleneck": "^2.19.5"
+	}
+}

@@ -1,0 +1,25 @@
+{
+	"editor.defaultFormatter": "dbaeumer.vscode-eslint",
+	"editor.formatOnSave": true,
+	"editor.formatOnPaste": false,
+	"editor.formatOnType": false,
+
+	"eslint.useFlatConfig": true,
+	"eslint.format.enable": true,
+	"eslint.run": "onType",
+	"eslint.validate": ["javascript", "typescript", "javascriptreact", "typescriptreact"],
+
+	"javascript.format.enable": false,
+	"typescript.format.enable": false,
+
+	"editor.insertSpaces": false,
+	"editor.tabSize": 2,
+	"editor.detectIndentation": false,
+
+	"editor.codeActionsOnSave": {
+		"source.organizeImports": "explicit"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	}
+}
