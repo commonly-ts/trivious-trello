@@ -94,25 +94,51 @@ export default class TrelloClient {
 		});
 	}
 
+	/**
+	 * Create a temporary cache that can auto-refresh
+	 * @param name The unique name of the cache
+	 * @param refresh Refresh function & interval (in seconds)
+	 * @returns The created cache map
+	 */
 	createCache<T>(name: string, refresh?: { func: () => T; interval: number }) {
 		this.cache.set(name, new Map<string, T>());
 		if (refresh) setInterval(() => this.cache.set(name, refresh.func()), refresh.interval);
 		return this.cache.get(name) as Map<string, T>;
 	}
 
+	/**
+	 * Get a cache by its name
+	 * @param name The name of the cache
+	 * @returns The cache map
+	 */
 	getCache(name: string) {
 		return this.cache.get(name);
 	}
 
+	/**
+	 * Append client credentials to the URL
+	 * @param url The URL
+	 * @returns The URL with updated searchParams
+	 */
 	appendCredentialParams(url: URL) {
 		url.searchParams.set("key", this._credentials.key);
 		url.searchParams.set("token", this._credentials.token);
 		return url;
 	}
 
+	/**
+	 * Card-related methods
+	 * client and path properties are intended for internal use
+	 */
 	cards = {
 		client: this as TrelloClient,
 		path: new URL("cards/", this.baseUrl).toString(),
+
+		/**
+		 * Add an attachment to a card
+		 * @param cardId The card ID
+		 * @param params Attachment parameters
+		 */
 		async addAttachment(cardId: string, params: CreateAttachmentOnCardQueryParameters) {
 			const url = new URL(`${cardId}/attachments`, this.path);
 			try {
@@ -129,6 +155,13 @@ export default class TrelloClient {
 				console.error(error);
 			}
 		},
+
+		/**
+		 * Create a new card under a list
+		 * @param listId The list ID
+		 * @param params Create parameters
+		 * @returns The created Trello card object
+		 */
 		async create(listId: string, params: CreateCardQueryParameters) {
 			const url = new URL("", this.path);
 			url.searchParams.set("idList", listId);
@@ -148,6 +181,12 @@ export default class TrelloClient {
 				console.error(error);
 			}
 		},
+
+		/**
+		 * Update the details of a card
+		 * @param cardId The card ID
+		 * @param params Update parameters
+		 */
 		async update(cardId: string, params: UpdateCardQueryParameters) {
 			const url = new URL(`${cardId}`, this.path);
 			try {
@@ -164,6 +203,12 @@ export default class TrelloClient {
 				console.error(error);
 			}
 		},
+
+		/**
+		 * Add a comment to a card
+		 * @param cardId The card ID
+		 * @param params Comment parameters
+		 */
 		async addComment(cardId: string, params: { text: string }) {
 			const url = new URL(`${cardId}/actions/comments`, this.path);
 			try {
@@ -182,8 +227,18 @@ export default class TrelloClient {
 		},
 	};
 
+	/**
+	 * Board-related methods
+	 * client property is intended for internal use
+	 */
 	boards = {
 		client: this as TrelloClient,
+
+		/**
+		 * Fetch all cards from the board via JSON request
+		 * @param boardId The ID of the board
+		 * @returns All visible Trello card objects
+		 */
 		async getCards(boardId: string) {
 			const url = new URL(`${boardId}/.json`, "https://trello.com/b/");
 			url.searchParams.set("cards", "visible");
