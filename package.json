@@ -1,6 +1,6 @@
 {
 	"name": "@trivious/trello",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"type": "module",
 	"description": "Trello API wrapper module for Trivious framework",
 	"license": "Apache-2.0",
